@@ -1,6 +1,15 @@
-# 飞书 iFlow 桥接服务
+# 飞书 iFlow 桥接服务（修复版）
 
 通过飞书消息调用 iFlow CLI 执行任务的桥接服务。
+
+> 这是修复版，解决了原项目中的多个关键问题。原项目地址：https://github.com/Wuguoshuo/feishu-iflow-bridge
+
+## 修复的问题
+
+1. ✅ **配置文件引用错误** - 统一引用 `config/config.js`
+2. ✅ **WebSocket 连接问题** - 修复 WSClient 初始化参数
+3. ✅ **会话 ID 生成问题** - 移除时间戳，使用固定哈希值
+4. ✅ **senderId 对象处理** - 正确处理对象类型
 
 ## 功能特性
 
@@ -26,14 +35,14 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/Wuguoshuo/feishu-iflow-bridge.git
+git clone https://github.com/gooooooq/feishu-iflow-bridge.git
 cd feishu-iflow-bridge
 
 # 安装依赖
 npm install
 
 # 配置环境变量
-cp config/default.js config/config.js
+cp config/config.example.js config/config.js
 # 编辑 config/config.js, 填入飞书应用的 App ID 和 App Secret
 ```
 
@@ -45,9 +54,17 @@ cp config/default.js config/config.js
 module.exports = {
   appId: 'your-app-id',           // 飞书应用 ID
   appSecret: 'your-app-secret',   // 飞书应用密钥
-  chatId: 'your-chat-id',         // 目标群聊 ID
+  chatId: 'your-chat-id',         // 目标群聊 ID（可选）
   // ... 其他配置
 };
+```
+
+或者使用环境变量（推荐）:
+
+```bash
+# 创建 .env 文件
+cp .env.example .env
+# 编辑 .env 文件填入你的配置
 ```
 
 ## 使用
@@ -123,8 +140,10 @@ MIT
 
 ## 作者
 
-Wuguoshuo
+- 原项目作者：Wuguoshuo
+- 修复版维护：gooooooq
 
 ## 链接
 
-- [GitHub 仓库](https://github.com/Wuguoshuo/feishu-iflow-bridge)
+- [修复版 GitHub 仓库](https://github.com/gooooooq/feishu-iflow-bridge)
+- [原项目 GitHub 仓库](https://github.com/Wuguoshuo/feishu-iflow-bridge)
